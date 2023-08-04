@@ -1,0 +1,30 @@
+server.port: 9099
+
+spring:
+  application:
+    name: audited-account-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:15432/audited-service-db
+    username: postgres
+    password: password
+  flyway:
+    baseline-on-migrate: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        envers:
+          envers:
+            audit_table_suffix: _AUD
+            revision_field_name: REVISION_ID
+            revision_type_field_name: REVISION_TYPE
+
+#properties for logging the sql statements with their parameters
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+
+slartibartfast.openapi.dev-url: http://localhost:9091
