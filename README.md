@@ -4,24 +4,27 @@
 
 ##### actual table
 
+```sql
 create table public.accounts
 (
-    id               bigint default nextval('accounts_id_seq1'::regclass) not null primary key,
-    created_at       timestamp(6)                                         not null,
+    id               bigint default 
+        nextval('accounts_id_seq1'::regclass) not null primary key,
+    created_at       timestamp(6)   not null,
     created_by       varchar(255),
     deleted_at       timestamp(6),
     updated_at       timestamp(6),
     last_modified_by varchar(255),
-    account_type     varchar(255)                                         not null,
-    ext_consumer_id  varchar(255)                                         not null,
-    currency_iso     varchar(255)                                         not null,
-    ext_id           varchar(255)
-        unique,
+    account_type     varchar(255)   not null,
+    ext_consumer_id  varchar(255)   not null,
+    currency_iso     varchar(255)   not null,
+    ext_id           varchar(255)   unique,
     primary_account  boolean
 );
+```
 
 ##### audit table
 
+```sql
 create table public.accounts_aud
 (
     id               bigint  not null,
@@ -41,4 +44,4 @@ create table public.accounts_aud
     primary_account  boolean,
     primary key (rev, id)
 );
-
+```
